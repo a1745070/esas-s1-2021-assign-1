@@ -1,0 +1,40 @@
+<h1 class="ui header">
+  <%= @movie.title.blank? ? "Movie" : @movie.title %>
+</h1>
+
+<%= semantic_flash %>
+
+<div class="ui card">
+  <div class="content">
+    <div class="ui divided very relaxed list">
+      <div class="item">
+        <div class="header">
+          Rating
+        </div>
+        <%= @movie.rating %>
+      </div>
+      <div class="item">
+        <div class="header">
+          Description
+        </div>
+        <%= @movie.description %>
+      </div>
+
+      <div class="item">
+        <div class="header">
+          Release date
+        </div>
+        <%= @movie.release_date %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui basic buttons">
+  <%= link_to movies_path, class: "ui button" do %>
+    <i class="chevron left icon"></i> Back
+  <% end %>
+  <%= link_to edit_movie_path(@movie), class: "ui button" do %>
+    <i class="edit"></i> Edit
+  <% end %>
+</div>
