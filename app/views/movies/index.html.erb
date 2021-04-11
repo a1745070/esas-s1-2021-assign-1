@@ -7,14 +7,34 @@
 
 <%= semantic_flash %>
 
+<%= form_tag movies_path, method: :get do %>
+  <div class="ui form">
+    <div class="inline fields">
+      <label>Include:</label>
+      <% @all_ratings.each do |rating| %>
+        <div class="field">
+          <div class="ui checkbox">
+            <%= check_box_tag "ratings[#{rating}]" %>
+            <label><%= rating %></label>
+          </div>
+        </div>
+      <% end %>
+      <%= submit_tag 'Refresh', class: "ui tiny green button" %>
+    </div>
+  </div>
+<% end %>
+
 <table class="ui table">
   <thead>
   <tr>
-    <th>Title</th>
+     <th class="<%= @movie_hl %>">
+  <%= link_to "Title", movies_path(:title_sort => 'on') %>
+</th>
     <th>Rating</th>
     <th>Description</th>
-    <th>Release date</th>
-    <th class="right aligned"></th>
+    <th class="<%= @date_hl %>">
+    <%= link_to "Release Date", movies_path(:date_sort => 'on') %>
+  </th>
   </tr>
   </thead>
 
@@ -25,6 +45,7 @@
       <td><%= movie.rating %></td>
       <td><%= movie.description %></td>
       <td><%= movie.release_date %></td>
+      
       <td class="right aligned">
         <div class="ui small basic buttons">
           <%= link_to movie, class: "ui button" do %>

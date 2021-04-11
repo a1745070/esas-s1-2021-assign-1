@@ -6,6 +6,16 @@ class MoviesController < ApplicationController
     @all_ratings = ['G','PG','PG-13','R']
     @ratings = Hash.new
     @movies = Movie.all
+    
+    if params[:title_sort] == "on"
+      @movies = Movie.order("title asc")
+      @movie_hl = "hilite"
+    elsif params[:date_sort] == "on"
+      @movies = Movie.order("release_date asc")
+      @date_hl = "hilite"
+    else
+      @movies = Movie.all
+    end
   end
 
   # GET /movies/1 or /movies/1.json
