@@ -4,6 +4,9 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
     @all_ratings = ['G','PG','PG-13','R']
+    if params[:ratings]
+      @movies = Movie.where(rating: params[:ratings].keys)
+    end
     @ratings = Hash.new
     @movies = Movie.all
     
@@ -14,6 +17,8 @@ class MoviesController < ApplicationController
       @movies = Movie.order("release_date asc")
       @date_hl = "hilite"
     else
+      @movies = Movie.all
+      params[:ratings] ? @movies = Movie.where(rating: params[:ratings].keys) :
       @movies = Movie.all
     end
   end
