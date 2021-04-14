@@ -4,6 +4,25 @@ class MoviesController < ApplicationController
 
 	# GET /movies or /movies.json
 	def index
+	# @all_ratings = ['G', 'PG', 'PG-13', 'R']
+	# if params[:ratings]
+	#   @movies = Movie.where(rating: params[:ratings].keys)
+	# end
+	# @ratings = Hash.new
+	# @movies = Movie.all
+	# if params[:title_sort] == "on"
+	#   @movies = Movie.order("title asc")
+	#   @movie_hl = "hilite"
+	# elsif params[:date_sort] == "on"
+	#   @movies = Movie.order("release_date asc")
+	#   @date_hl = "hilite"
+	# else
+	#   # @movies = Movie.all
+	#   params[:ratings] ? @movies = Movie.where(rating: params[:ratings].keys) :
+	#   @movies = Movie.all 
+	# end
+  # end
+
 
 		sort = params[:sort] || session[:sort]
 		case sort
@@ -23,23 +42,7 @@ class MoviesController < ApplicationController
 		end
 		@movies = Movie.where(rating: @selected_ratings.keys).order(ordering)
 	end
-	# @all_ratings = ['G', 'PG', 'PG-13', 'R']
-	# if params[:ratings]
-	#   @movies = Movie.where(rating: params[:ratings].keys)
-	# end
-	# @ratings = Hash.new
-	# @movies = Movie.all
-	# if params[:title_sort] == "on"
-	#   @movies = Movie.order("title asc")
-	#   @movie_hl = "hilite"
-	# elsif params[:date_sort] == "on"
-	#   @movies = Movie.order("release_date asc")
-	#   @date_hl = "hilite"
-	# else
-	#   # @movies = Movie.all
-	#   params[:ratings] ? @movies = Movie.where(rating: params[:ratings].keys) :
-	#   @movies = Movie.all 
-	# end
+
 		
 	# GET /movies/1 or /movies/1.json
 	def show
