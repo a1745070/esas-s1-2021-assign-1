@@ -8,13 +8,16 @@
 
 
 <%= form_tag movies_path, method: :get do %>
+
   <div class="ui form">
     <div class="inline fields">
       <label>Include:</label>
       <% @all_ratings.each do |rating| %>
+
         <div class="field">
           <div class="ui checkbox">
-            <%= check_box_tag "ratings[#{rating}]" %>
+         <%= check_box_tag "ratings[#{rating}]" %> 
+
             <label><%= rating %></label>
           </div>
         </div>
@@ -52,6 +55,7 @@
             <i class="eye icon"></i> Show
           <% end %>
           <%= link_to edit_movie_path(movie), class: "ui button" do %>
+
             <i class="edit icon"></i> Edit
           <% end %>
           <%= link_to movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui button" do %>
@@ -65,3 +69,6 @@
 </table>
 
 <br>
+
+
+
